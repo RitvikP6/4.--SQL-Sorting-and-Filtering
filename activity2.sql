@@ -1,0 +1,59 @@
+CREATE TABLE TRAVEL_IDEAS (
+    SN_NO TEXT,
+    DATES TEXT,
+    DESTINATION TEXT,
+    ACCOMMODATION TEXT,
+    ACTIVITIES TEXT,
+    NO_OF_PEOPLE INTEGER
+);
+
+INSERT INTO TRAVEL_IDEAS (SN_NO, DATES, DESTINATION, ACCOMMODATION, ACTIVITIES, NO_OF_PEOPLE) VALUES
+    (1, '2024-11-05 to 2024-11-10', 'Paris', 'Hotel Le Meurice', 'Eiffel Tower, Louvre Museum', 2),
+    (2, '2024-12-15 to 2024-12-20', 'Tokyo', 'Tokyo Stay Inn', 'Mount Fuji, Shibuya Crossing', 3),
+    (3, '2025-01-10 to 2025-01-15', 'New York', 'The Plaza Hotel', 'Statue of Liberty, Central Park', 4),
+    (4, '2025-02-05 to 2025-02-10', 'Sydney', 'Sydney Harbour Marriott', 'Sydney Opera House, Bondi Beach', 2),
+    (5, '2025-03-12 to 2025-03-17', 'Rome', 'Rome Cavalieri', 'Colosseum, Vatican City', 5);
+
+-- Corrected SELECT statement to group and show Serial Number
+SELECT SN_NO AS 'Serial Number'
+FROM TRAVEL_IDEAS
+GROUP BY SN_NO;
+
+-- Corrected SELECT statement to show the number of people and their total sum
+SELECT NO_OF_PEOPLE, SUM(NO_OF_PEOPLE) AS 'Total People'
+FROM TRAVEL_IDEAS
+GROUP BY NO_OF_PEOPLE;
+
+SELECT DESTINATION, NO_OF_PEOPLE
+FROM TRAVEL_IDEAS
+WHERE NO_OF_PEOPLE > 2;
+
+SELECT COUNT(DISTINCT DESTINATION) AS 'Total Destinations'
+FROM TRAVEL_IDEAS;
+
+SELECT SN_NO, DESTINATION, NO_OF_PEOPLE
+FROM TRAVEL_IDEAS
+ORDER BY NO_OF_PEOPLE DESC;
+
+SELECT DESTINATION, NO_OF_PEOPLE
+FROM TRAVEL_IDEAS
+ORDER BY NO_OF_PEOPLE ASC
+LIMIT 1;
+
+SELECT DESTINATION, ACTIVITIES
+FROM TRAVEL_IDEAS
+WHERE DESTINATION = 'Paris';
+
+SELECT SN_NO, DESTINATION, ACCOMMODATION
+FROM TRAVEL_IDEAS
+WHERE ACCOMMODATION LIKE '%Hotel%';
+
+SELECT COUNT(*) AS 'Destinations with more than 4 People'
+FROM TRAVEL_IDEAS
+WHERE NO_OF_PEOPLE > 4;
+
+SELECT AVG(NO_OF_PEOPLE) AS 'Average People per Destination'
+FROM TRAVEL_IDEAS;
+
+SELECT DESTINATION, DATES
+FROM TRAVEL_IDEAS;
